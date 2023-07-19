@@ -12,6 +12,7 @@ const ticketDetailSchema = new mongoose.Schema({
     },
     persons : Number,
     total_price : Number,
+    payment_id : String,
 });
 
 

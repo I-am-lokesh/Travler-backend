@@ -9,7 +9,7 @@ import { Destination } from "../models/destination.js";
 
 export const bookTicket = async (req, res) => { 
 
-    const { destination_id, persons } = req.body;
+    const { destination_id, persons, payment_id } = req.body;
      try {  
          const destination = await Destination.findById(destination_id);
             if(!destination) {
@@ -37,7 +37,8 @@ export const bookTicket = async (req, res) => {
                 destination_name : ticket.destination_name,
                 persons : persons,
                 total_price : total_price,
-                Date : new Date(Date.now()).toLocaleString(),
+                payment_id : payment_id,
+                Date : new Date(Date.now()),
                 });
 
                 destination.no_of_visits += persons;
@@ -45,7 +46,7 @@ export const bookTicket = async (req, res) => {
             res.status(201).json({
                 success: true,
                 message: "Ticket booked successfully",
-                   data: bookedTicket
+                data: bookedTicket
             }) 
 
      }
@@ -134,4 +135,33 @@ export const getUserTicket = async (req, res) => {
 //ADD TICKET END
 
 
+//GET TICKET BY ID START 
 
+
+export const getTicketById = async (req, res) => {
+       const { ticket_id } = req.body;
+        console.log(ticket_id)
+         try {
+            const ticket = await TicketDetail.findById(ticket_id);
+            if(!ticket) {
+                throw new Error("Ticket not found");
+            }
+            res.status(200)
+            .json({
+                success: true,
+                data: ticket
+                 });
+         }
+            catch (error) {
+                console.log(error)
+                res.status(404)
+                .json({ 
+                    success: false,
+                    message: "Ticket not found or Some internal error occured" });
+            }
+     
+
+
+}
+
+//GET TICKET BY ID END
