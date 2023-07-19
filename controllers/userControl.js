@@ -58,7 +58,7 @@ export const login = async (req, res) => {
 
   sendCookie(user, res, `welcome back ${user.name}`, 200);
 };
-
+ 
 //LOGIN END
 
 //LOGOUT START

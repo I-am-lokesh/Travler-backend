@@ -13,7 +13,7 @@ router.put("/updateUser", isAuthentic ,updateUser) ;
 
 // //GET METHODS
  router.get("/logout",logout) ;
- router.get("/userDetails",isAuthentic,userDetails) ;
+ router.get("/userDetails", isAuthentic, userDetails) ;
 router.get("/userLikes",isAuthentic, getLikes) ;
 
 export default router ;
