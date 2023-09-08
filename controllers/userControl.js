@@ -93,7 +93,7 @@ export const likeOrUnlike = async (req, res) => {
     });
   }
   const user = await User.findById(req.user._id);
-
+   
   if (user.likes.includes(destination_id)) {
     user.likes.pull(destination_id);
     destination.no_of_likes = destination.no_of_likes - 1;
