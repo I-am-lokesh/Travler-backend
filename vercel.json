@@ -12,7 +12,7 @@
         "src": "/(.*)",
         "dest": "server.js",
         "headers": {
-        "Access-Control-Allow-Origin": "*"
+        "Access-Control-Allow-Origin": "https://travler.vercel.app/"
       }
       }
     ]
