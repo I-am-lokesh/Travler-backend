@@ -1,7 +1,9 @@
 import {instance } from "../server.js";
 import crypto from "crypto";
 import {Payment} from "../models/paymentSchema.js"
+
 let order_id ;
+
 export const checkout = async (req, res) => {
         try {
             const options = {
@@ -10,9 +12,10 @@ export const checkout = async (req, res) => {
                 receipt: "order_rcptid_11"
               };
              const order = await instance.orders.create(options)
-        
+                           
              console.log(order)
              order_id = order.id ;
+
              res.status(200).json({
                     success: true,
                     order
@@ -29,7 +32,7 @@ export const paymentVerification = async (req, res) => {
          
        const {razorpay_payment_id, razorpay_order_id, razorpay_signature} = req.body ;
 
-        console.log(req.body)
+        console.log(req.body) ;
        
        
         const shasum = crypto.createHmac("sha256", process.env.RAZORPAY_API_SECRET);
